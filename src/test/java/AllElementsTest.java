@@ -16,7 +16,7 @@ public class AllElementsTest {
         driver.get("https://qa-scooter.praktikum-services.ru/");
     }
     @Test
-    public void TestWithUpperOrderButton() {
+    public void testWithUpperOrderButton() {
         AllElements orderInformationPage = new AllElements(driver);
         HomePage homePage = new HomePage(driver);
         homePage.clickUpperOrderButton();
@@ -28,11 +28,14 @@ public class AllElementsTest {
                 "+79662325210",
                 "01.10.2010",
                 "сутки",
-                "чёрный",
+                "чёрный жемчуг",
                 "Вжух");
+        String expected = "Заказ оформлен";
+        String actual = orderInformationPage.getNotificationOfOrderCreation();
+        Assert.assertThat("Уведомление о создании заказа не появлиось или заказ не создан", actual, startsWith(expected));
     }
     @Test
-    public void TestWithLowerOrderButton() {
+    public void estWithLowerOrderButton() {
         AllElements orderInformationPage = new AllElements(driver);
         HomePage homePage = new HomePage(driver);
         homePage.clickLowerOrderButton();
@@ -43,16 +46,15 @@ public class AllElementsTest {
                 "Тверская",
                 "+79014003692",
                 "30.11.2010",
-                "пять суток",
-                "розовый",
+                "пятеро суток",
+                "серая безысходность",
                 "Будьте, как дома");
-    }
-    @After
-    public void teardown(){
-        AllElements orderInformationPage = new AllElements(driver);
         String expected = "Заказ оформлен";
         String actual = orderInformationPage.getNotificationOfOrderCreation();
         Assert.assertThat("Уведомление о создании заказа не появлиось или заказ не создан", actual, startsWith(expected));
+    }
+    @After
+    public void teardown(){
         driver.quit();
     }
 

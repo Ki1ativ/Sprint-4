@@ -15,8 +15,8 @@ public class QuestionTest {
     @Before
     public void setPropAndStartBrowser() {
 
-        //driver = new ChromeDriver();
-        driver = new FirefoxDriver();
+        driver = new ChromeDriver();
+        //driver = new FirefoxDriver();
         driver.get("https://qa-scooter.praktikum-services.ru/");
         WebElement element = driver.findElement(By.id("accordion__heading-0"));
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element);
